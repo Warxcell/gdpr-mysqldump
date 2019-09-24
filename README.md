@@ -46,7 +46,9 @@ See https://github.com/fzaninotto/Faker for all available `generator`/`arguments
 Encodes `password` as per `security` section of Symfony Configuration.
 
 You can always add your own Transformer which fits your needs. Just create your own class which implements `Arxy\GdprDumpBundle\Transformer`
-or extends `Arxy\GdprDumpBundle\AbstractTransformer` and register it as Symfony Service with tag `arxy.gdpr_mysqldump.transformer`. Voila!
+or extends `Arxy\GdprDumpBundle\AbstractTransformer` and register it as Symfony Service with tag `arxy.gdpr_mysqldump.transformer`.
+If you are using Symfony with autowire and autoconfigure you probably won't need to do anything else except creating the class - symfony will take care of the other things.
+Voila!
 ## How it works
 First values are fetched from database. If ValueConverter is available - it converts the value into PHP variable.
 Then ValueTransformer is called. The returned value is passed to ValueConverter, if available which converts it into Database Value.
