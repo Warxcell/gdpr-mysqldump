@@ -44,7 +44,7 @@ class FakerTransformer extends AbstractTransformer
         }
     }
 
-    public function transform($tableName, $colName, $colValue, $row, $options = []): ?string
+    public function transform($tableName, $colName, $colValue, $row, $options = [])
     {
         return $this->getGenerator($options['locale'])->format($options['generator'], $options['arguments']);
     }

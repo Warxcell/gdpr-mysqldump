@@ -31,8 +31,8 @@ class Customer
     private $lastName;
 
     /**
-     * @var \DateTimeImmutable|null
-     * @ORM\Column(type="datetime_immutable", name="birth_date")
+     * @var \DateTime|null
+     * @ORM\Column(type="datetime", name="birth_date")
      */
     private $birthDate;
 
@@ -67,12 +67,12 @@ class Customer
         $this->lastName = $lastName;
     }
 
-    public function getBirthDate(): ?\DateTimeImmutable
+    public function getBirthDate(): ?\DateTime
     {
         return $this->birthDate;
     }
 
-    public function setBirthDate(?\DateTimeImmutable $birthDate): void
+    public function setBirthDate(?\DateTime $birthDate): void
     {
         $this->birthDate = $birthDate;
     }

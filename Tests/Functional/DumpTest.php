@@ -4,18 +4,17 @@ declare(strict_types=1);
 namespace Arxy\GdprDumpBundle\Tests\Functional;
 
 use Arxy\GdprDumpBundle\Tests\Entity\Customer;
-use Doctrine\DBAL\Driver\PDOConnection;
-use Doctrine\DBAL\Driver\PDOStatement;
 use Doctrine\ORM\EntityManagerInterface;
 use Ifsnop\Mysqldump\Mysqldump;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
+use Symfony\Component\Console\Output\Output;
 
 class TranslatorTest extends WebTestCase
 {
-    private function buildDb(Application $application)
+    private function buildDb(Application $application, Output $output)
     {
         $application->run(
             new ArrayInput(
@@ -23,19 +22,21 @@ class TranslatorTest extends WebTestCase
                     'doctrine:schema:create',
                 )
             ),
-            new ConsoleOutput()
+            $output
         );
     }
 
-    private function dropDb(Application $application)
+    private function dropDb(Application $application, Output $output)
     {
         $application->run(
             new ArrayInput(
                 array(
                     'doctrine:schema:drop',
+                    '--force' => null,
+                    '--full-database' => null,
                 )
             ),
-            new ConsoleOutput()
+            $output
         );
     }
 
@@ -47,8 +48,9 @@ class TranslatorTest extends WebTestCase
         $application = new Application($kernel);
         $application->setAutoExit(false);
 
-        $this->dropDb($application);
-        $this->buildDb($application);
+        $output = new ConsoleOutput();
+        $this->dropDb($application, $output);
+        $this->buildDb($application, $output);
 
         $container = $kernel->getContainer();
         $testContainer = $container->get('test.service_container');
@@ -60,48 +62,28 @@ class TranslatorTest extends WebTestCase
         $customer1->setId(1);
         $customer1->setFirstName('Angel');
         $customer1->setLastName('Angelov');
-        $customer1->setBirthDate(new \DateTimeImmutable('1990-05-20'));
+        $customer1->setBirthDate(new \DateTime('1990-05-20'));
         $em->persist($customer1);
         $em->flush();
+        $em->clear();
 
+        $file = tempnam(sys_get_temp_dir(), 'mysqldump');
         /** @var Mysqldump $mysqldump */
         $mysqldump = $testContainer->get(Mysqldump::class);
-        $mysqldump->start('php://memory');
+        $mysqldump->start($file);
 
-        $sql = file_get_contents('php://memory');
+        $sql = file_get_contents($file);
 
-        $this->dropDb($application);
-        $this->buildDb($application);
+        $this->dropDb($application, $output);
+        $this->buildDb($application, $output);
 
-        $connection = $em->getConnection();
-
-        if ($connection instanceof PDOConnection) {
-            // PDO Drivers
-            $lines = 0;
-            $stmt = $connection->prepare($sql);
-            assert($stmt instanceof PDOStatement);
-            $stmt->execute();
-            do {
-                // Required due to "MySQL has gone away!" issue
-                $stmt->fetch();
-                $stmt->closeCursor();
-                $lines++;
-            } while ($stmt->nextRowset());
-        } else {
-            // Non-PDO Drivers (ie. OCI8 driver)
-            $stmt = $connection->prepare($sql);
-            $rs = $stmt->execute();
-            if (!$rs) {
-                $error = $stmt->errorInfo();
-                throw new \RuntimeException($error[2], $error[0]);
-            }
-
-            $stmt->closeCursor();
-        }
+        $conn = $em->getConnection();
+        $conn->exec($sql);
 
         /** @var Customer $customer1AfterGdpr */
         $customer1AfterGdpr = $em->find(Customer::class, 1);
 
+        $this->assertNotNull($customer1AfterGdpr, 'Customer 1 not found');
         $this->assertNotEquals('Angel', $customer1AfterGdpr->getFirstName());
         $this->assertNotEquals('Angelov', $customer1AfterGdpr->getLastName());
         $this->assertNotEquals('1990-05-20', $customer1AfterGdpr->getBirthDate()->format('Y-m-d'));

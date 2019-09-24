@@ -17,7 +17,7 @@ class JsonTransformer extends AbstractTransformer
         $this->originalTransformer = $originalTransformer;
     }
 
-    public function transform($tableName, $colName, $colValue, $row, $options = []): ?string
+    public function transform($tableName, $colName, $colValue, $row, $options = [])
     {
         return json_encode($this->originalTransformer->transform($tableName, $colName, $colValue, $row, $options));
     }

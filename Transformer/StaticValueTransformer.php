@@ -8,7 +8,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StaticValueTransformer extends AbstractTransformer
 {
-    public function transform($tableName, $colName, $colValue, $row, $options = []): ?string
+    public function transform($tableName, $colName, $colValue, $row, $options = [])
     {
         return $options['value'];
     }

@@ -7,7 +7,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 abstract class AbstractTransformer implements Transformer
 {
-    abstract public function transform($tableName, $colName, $colValue, $row, $options = []): ?string;
+    abstract public function transform($tableName, $colName, $colValue, $row, $options = []);
 
     public function configureOptions(OptionsResolver $optionsResolver): void
     {

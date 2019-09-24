@@ -25,7 +25,7 @@ class SymfonyPasswordTransformer extends AbstractTransformer
         $this->entityManager = $entityManager;
     }
 
-    public function transform($tableName, $colName, $colValue, $row, $options = []): ?string
+    public function transform($tableName, $colName, $colValue, $row, $options = [])
     {
         foreach ($this->entityManager->getMetadataFactory()->getAllMetadata() as $metadata) {
             /** @var $metadata ClassMetadata */
