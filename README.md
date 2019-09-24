@@ -2,7 +2,7 @@
 
 ```php
 services:
-    Arxy\GdprDump\Convertor\DoctrineConverter:
+    Arxy\GdprDump\Converter\DoctrineConverter:
         arguments: ["@doctrine.orm.entity_manager"]
 
     Arxy\GdprDump\Transformer\FakerTransformer: ~
@@ -11,7 +11,7 @@ services:
 
 arxy_gdpr_dump:
     dsn: 'mysql://user:password@host:port/dbName'
-    value_convertor: 'Arxy\GdprDump\Convertor\DoctrineConverter' // optional
+    value_converter: 'Arxy\GdprDump\Converter\DoctrineConverter' // optional
     gdpr:
         table_name:
             column_name:
@@ -26,7 +26,7 @@ arxy_gdpr_dump:
 Converters are used to convert value from database to PHP and vice-versa. (For example - convert string '2019-08-20 23:50:50' to \DateTime(''2019-08-20 23:50:50'))
 
 ### Available converters:
-`Arxy\GdprDump\Convertor\DoctrineConvertor` - uses Doctrine metadata to convert values.
+`Arxy\GdprDump\Converter\DoctrineConverter` - uses Doctrine metadata to convert values.
 
 ## Transformers:
 Transformers are used to transform value of column to GDPR-compatible.

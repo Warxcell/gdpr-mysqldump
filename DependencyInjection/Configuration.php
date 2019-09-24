@@ -22,7 +22,7 @@ class Configuration implements ConfigurationInterface
         $rootChildren = $rootNode
             ->children()
             ->scalarNode('dsn')->isRequired()->cannotBeEmpty()->end()
-            ->scalarNode('value_convertor')->end()
+            ->scalarNode('value_converter')->end()
             ->arrayNode('dump_settings')->useAttributeAsKey('name')->variablePrototype()->end()->end()
             ->arrayNode('pdo_settings')->useAttributeAsKey('name')->variablePrototype()->end()->end();
 

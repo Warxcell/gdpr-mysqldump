@@ -35,8 +35,8 @@ class ArxyGdprDumpExtension extends Extension
             ->setAutowired(true);
 
         $transformValueDefinition = $container->getDefinition(ValueTransformer::class);
-        if (isset($config['value_convertor'])) {
-            $transformValueDefinition->setArgument('$valueConvertor', new Reference($config['value_convertor']));
+        if (isset($config['value_converter'])) {
+            $transformValueDefinition->setArgument('$valueConverter', new Reference($config['value_converter']));
         }
 
         $mysqldumpDef = $container->getDefinition(Mysqldump::class);

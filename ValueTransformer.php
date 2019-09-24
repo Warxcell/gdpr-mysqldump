@@ -13,7 +13,7 @@ class ValueTransformer
     private $transformers = [];
 
     /** @var ValueConverter */
-    private $valueConvertor;
+    private $valueConverter;
 
     /** @var OptionsResolver[] */
     private $transformerOptions = [];
@@ -21,9 +21,9 @@ class ValueTransformer
     /** @var TableMetadata[] */
     private $tableMetadata = [];
 
-    public function __construct(ValueConverter $valueConvertor = null)
+    public function __construct(ValueConverter $valueConverter = null)
     {
-        $this->valueConvertor = $valueConvertor;
+        $this->valueConverter = $valueConverter;
     }
 
     public function addTableMetadata(TableMetadata $tableMetadata): void
@@ -85,8 +85,8 @@ class ValueTransformer
         try {
             $options = $this->getOptions($columnMetadata, $transformer);
 
-            if ($this->valueConvertor) {
-                $colValue = $this->valueConvertor->convertToPHPValue($tableName, $colName, $colValue);
+            if ($this->valueConverter) {
+                $colValue = $this->valueConverter->convertToPHPValue($tableName, $colName, $colValue);
             }
 
             $colValue = $transformer->transform(
@@ -97,8 +97,8 @@ class ValueTransformer
                 $options
             );
 
-            if ($this->valueConvertor) {
-                $colValue = $this->valueConvertor->convertToDatabaseValue($tableName, $colName, $colValue);
+            if ($this->valueConverter) {
+                $colValue = $this->valueConverter->convertToDatabaseValue($tableName, $colName, $colValue);
             }
 
             return $colValue;
