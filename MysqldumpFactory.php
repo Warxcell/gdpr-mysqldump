@@ -10,7 +10,12 @@ class MysqldumpFactory
 {
     protected static function getDsn($parsed)
     {
-        $dsn = $parsed['scheme'];
+        if ($parsed['scheme'] == 'postgres') {
+            $dsn = 'pgsql';
+        } else {
+            $dsn = $parsed['scheme'];
+        }
+
         $dsn .= ':dbname='.$parsed['path'];
 
         if (isset($parsed['host'])) {
