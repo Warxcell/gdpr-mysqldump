@@ -106,4 +106,9 @@ class ValueTransformer
             throw TransformationException::create($transformer, $columnMetadata, $ex);
         }
     }
+
+    public function __invoke($tableName, $colName, $colValue, $row)
+    {
+        return $this->transform($tableName, $colName, $colValue, $row);
+    }
 }

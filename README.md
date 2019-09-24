@@ -69,5 +69,5 @@ $tableCustomers->addColumn(new \Arxy\GdprDumpBundle\Metadata\ColumnMetadata("fir
 $valueTransformer->addTableMetadata($tableCustomers);
 
 $mysqldump = new \Ifsnop\Mysqldump\Mysqldump($dsn, $user, $password, $dumpSettings, $pdoSettings);
-$mysqldump->setTransformColumnValueHook([$transformValue, 'transform']);
+$mysqldump->setTransformColumnValueHook($transformValue);
 ```
