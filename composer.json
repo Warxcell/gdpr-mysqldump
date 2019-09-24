@@ -1,0 +1,27 @@
+{
+    "name": "arxy/gdpr-mysqldump",
+    "description": "A drop-in replacement for mysqldump that optionally sanitizes DB fields for better GDPR conformity.",
+    "require": {
+        "php": "~7.1",
+        "ifsnop/mysqldump-php": "~v2.7",
+        "symfony/options-resolver": "^3.0 || ^4.0"
+    },
+    "require-dev": {
+        "symfony/symfony": "~3.4 | ~4.3",
+        "doctrine/doctrine-bundle": "*",
+        "fzaninotto/faker": "*",
+        "doctrine/orm": "*",
+        "symfony/phpunit-bridge": "^4.3"
+    },
+    "suggest": {
+        "fzaninotto/faker": "Required for FakerTransformer. Generates fake data.",
+        "doctrine/orm": "Required for SymfonyPasswordTransformer. Encodes password"
+    },
+    "autoload": {
+        "psr-4": {
+            "Arxy\\GdprDump\\": ""
+        }
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

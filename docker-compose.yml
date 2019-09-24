@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+    db:
+        image: mariadb:10.4
+        environment:
+            MYSQL_ROOT_PASSWORD: root
+            MYSQL_DATABASE: gdpr_dump
+            MYSQL_USER: gdpr_dump
+            MYSQL_PASSWORD: gdpr_dump
+
+    php:
+        build:
+            context: ./
+            target: php
+        volumes:
+            - ./:/var/www
+        depends_on:
+            - db

@@ -1,0 +1,48 @@
+framework:
+    test: ~
+    secret: 12qwahtyuj56y
+
+doctrine:
+    dbal:
+        path:   'mysql://root:root@db:3306/gdpr_dump'
+        charset:  UTF8
+    orm:
+        auto_generate_proxy_classes: "%kernel.debug%"
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+        mappings:
+            ArxyGdprDumpTests:
+                type: annotation
+                dir: '%kernel.root_dir%/Entity'
+                is_bundle: false
+                prefix: Arxy\GdprDump\Tests\Entity
+
+services:
+    Arxy\GdprDump\Convertor\DoctrineConvertor:
+        arguments: ["@doctrine.orm.entity_manager"]
+
+    Arxy\GdprDump\Transformer\FakerTransformer: ~
+    Arxy\GdprDump\Transformer\StaticValueTransformer: ~
+
+arxy_gdpr_dump:
+    dsn: 'mysql://root:root@db:3306/gdpr_dump'
+    value_convertor: 'Arxy\GdprDump\Convertor\DoctrineConvertor'
+    gdpr:
+        customers:
+            first_name:
+                transformer: Arxy\GdprDump\Transformer\FakerTransformer
+                options:
+                    generator: firstName
+                    arguments: { 'gender': 'male' }
+                    locale: en_US
+            last_name:
+                transformer: Arxy\GdprDump\Transformer\FakerTransformer
+                options:
+                    generator: lastName
+                    arguments: { 'gender': 'male' }
+                    locale: en_US
+            birth_date:
+                transformer: Arxy\GdprDump\Transformer\FakerTransformer
+                options:
+                    generator: dateTimeBetween
+                    arguments: { 'startDate': '-50 years', 'endDate': '-20 years' }
