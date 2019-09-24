@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\Converter;
+namespace Arxy\GdprDumpBundle\Converter;
 
-use Arxy\GdprDump\ValueConverter;
+use Arxy\GdprDumpBundle\ValueConverter;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
 

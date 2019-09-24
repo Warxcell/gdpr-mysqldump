@@ -1,10 +1,10 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump;
+namespace Arxy\GdprDumpBundle;
 
-use Arxy\GdprDump\Metadata\ColumnMetadata;
-use Arxy\GdprDump\Metadata\TableMetadata;
+use Arxy\GdprDumpBundle\Metadata\ColumnMetadata;
+use Arxy\GdprDumpBundle\Metadata\TableMetadata;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ValueTransformer

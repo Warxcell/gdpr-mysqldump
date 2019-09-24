@@ -9,7 +9,7 @@
 >
     <php>
         <ini name="error_reporting" value="-1"/>
-        <env name="KERNEL_CLASS" value="Arxy\GdprDump\Tests\AppKernel"/>
+        <env name="KERNEL_CLASS" value="Arxy\GdprDumpBundle\Tests\AppKernel"/>
         <env name="SHELL_VERBOSITY" value="-1"/>
         <!-- define your env variables for the test env here -->
     </php>

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\Metadata;
+namespace Arxy\GdprDumpBundle\Metadata;
 
 class TableMetadata
 {

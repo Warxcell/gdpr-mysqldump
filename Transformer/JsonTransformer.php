@@ -1,9 +1,10 @@
 <?php
+declare(strict_types=1);
 
-namespace Arxy\GdprDump\Transformer;
+namespace Arxy\GdprDumpBundle\Transformer;
 
-use Arxy\GdprDump\AbstractTransformer;
-use Arxy\GdprDump\Transformer;
+use Arxy\GdprDumpBundle\AbstractTransformer;
+use Arxy\GdprDumpBundle\Transformer;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class JsonTransformer extends AbstractTransformer

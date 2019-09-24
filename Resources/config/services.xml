@@ -7,12 +7,12 @@
     <services>
         <defaults autowire="true" autoconfigure="false" public="false"/>
 
-        <service id="Arxy\GdprDump\ValueTransformer">
+        <service id="Arxy\GdprDumpBundle\ValueTransformer">
         </service>
 
         <service id="Ifsnop\Mysqldump\Mysqldump" public="true">
-            <factory class="Arxy\GdprDump\MysqldumpFactory" method="createMysqldump"/>
-            <argument type="service" id="Arxy\GdprDump\ValueTransformer"/>
+            <factory class="Arxy\GdprDumpBundle\MysqldumpFactory" method="createMysqldump"/>
+            <argument type="service" id="Arxy\GdprDumpBundle\ValueTransformer"/>
         </service>
     </services>
 </container>

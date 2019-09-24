@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Arxy\GdprDump;
+namespace Arxy\GdprDumpBundle;
 
-use Ifsnop\Mysqldump\Mysqldump;
+use Ifsnop\GdprDumpBundle\Mysqldump;
 
 class MysqldumpFactory
 {

@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\DependencyInjection\CompilerPass;
+namespace Arxy\GdprDumpBundle\DependencyInjection\CompilerPass;
 
-use Arxy\GdprDump\DependencyInjection\ArxyGdprDumpExtension;
-use Arxy\GdprDump\ValueTransformer;
+use Arxy\GdprDumpBundle\DependencyInjection\ArxyGdprDumpExtension;
+use Arxy\GdprDumpBundle\ValueTransformer;
 use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Reference;

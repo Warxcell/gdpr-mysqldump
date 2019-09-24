@@ -1,12 +1,12 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\DependencyInjection;
+namespace Arxy\GdprDumpBundle\DependencyInjection;
 
-use Arxy\GdprDump\Metadata\ColumnMetadata;
-use Arxy\GdprDump\Metadata\TableMetadata;
-use Arxy\GdprDump\Transformer;
-use Arxy\GdprDump\ValueTransformer;
+use Arxy\GdprDumpBundle\Metadata\ColumnMetadata;
+use Arxy\GdprDumpBundle\Metadata\TableMetadata;
+use Arxy\GdprDumpBundle\Transformer;
+use Arxy\GdprDumpBundle\ValueTransformer;
 use Ifsnop\Mysqldump\Mysqldump;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump;
+namespace Arxy\GdprDumpBundle;
 
-use Arxy\GdprDump\Metadata\ColumnMetadata;
+use Arxy\GdprDumpBundle\Metadata\ColumnMetadata;
 
 class TransformationException extends \RuntimeException
 {

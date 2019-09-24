@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\Tests\Entity;
+namespace Arxy\GdprDumpBundle\Tests\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 

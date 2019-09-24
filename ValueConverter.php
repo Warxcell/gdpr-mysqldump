@@ -1,6 +1,6 @@
 <?php
 
-namespace Arxy\GdprDump;
+namespace Arxy\GdprDumpBundle;
 
 interface ValueConverter
 {

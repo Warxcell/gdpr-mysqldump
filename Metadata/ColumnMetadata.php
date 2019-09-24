@@ -1,6 +1,6 @@
 <?php
 
-namespace Arxy\GdprDump\Metadata;
+namespace Arxy\GdprDumpBundle\Metadata;
 
 class ColumnMetadata
 {

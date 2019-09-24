@@ -15,34 +15,34 @@ doctrine:
                 type: annotation
                 dir: '%kernel.root_dir%/Entity'
                 is_bundle: false
-                prefix: Arxy\GdprDump\Tests\Entity
+                prefix: Arxy\GdprDumpBundle\Tests\Entity
 
 services:
-    Arxy\GdprDump\Converter\DoctrineConverter:
+    Arxy\GdprDumpBundle\Converter\DoctrineConverter:
         arguments: ["@doctrine.orm.entity_manager"]
 
-    Arxy\GdprDump\Transformer\FakerTransformer: ~
-    Arxy\GdprDump\Transformer\StaticValueTransformer: ~
+    Arxy\GdprDumpBundle\Transformer\FakerTransformer: ~
+    Arxy\GdprDumpBundle\Transformer\StaticValueTransformer: ~
 
 arxy_gdpr_dump:
     dsn: 'mysql://root:root@db:3306/gdpr_dump'
-    value_converter: 'Arxy\GdprDump\Converter\DoctrineConverter'
+    value_converter: 'Arxy\GdprDumpBundle\Converter\DoctrineConverter'
     gdpr:
         customers:
             first_name:
-                transformer: Arxy\GdprDump\Transformer\FakerTransformer
+                transformer: Arxy\GdprDumpBundle\Transformer\FakerTransformer
                 options:
                     generator: firstName
                     arguments: { 'gender': 'male' }
                     locale: en_US
             last_name:
-                transformer: Arxy\GdprDump\Transformer\FakerTransformer
+                transformer: Arxy\GdprDumpBundle\Transformer\FakerTransformer
                 options:
                     generator: lastName
                     arguments: { 'gender': 'male' }
                     locale: en_US
             birth_date:
-                transformer: Arxy\GdprDump\Transformer\FakerTransformer
+                transformer: Arxy\GdprDumpBundle\Transformer\FakerTransformer
                 options:
                     generator: dateTimeBetween
                     arguments: { 'startDate': '-50 years', 'endDate': '-20 years' }

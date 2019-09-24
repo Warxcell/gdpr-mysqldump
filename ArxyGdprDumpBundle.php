@@ -1,8 +1,9 @@
 <?php
+declare(strict_types=1);
 
-namespace Arxy\GdprDump;
+namespace Arxy\GdprDumpBundle;
 
-use Arxy\GdprDump\DependencyInjection\CompilerPass\TransformersCompilerPass;
+use Arxy\GdprDumpBundle\DependencyInjection\CompilerPass\TransformersCompilerPass;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

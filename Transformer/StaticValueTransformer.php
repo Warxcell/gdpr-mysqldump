@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\Transformer;
+namespace Arxy\GdprDumpBundle\Transformer;
 
-use Arxy\GdprDump\AbstractTransformer;
+use Arxy\GdprDumpBundle\AbstractTransformer;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class StaticValueTransformer extends AbstractTransformer

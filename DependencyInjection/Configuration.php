@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\DependencyInjection;
+namespace Arxy\GdprDumpBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\NodeBuilder;
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
@@ -37,14 +37,14 @@ class Configuration implements ConfigurationInterface
     {
         return $rootNode
             ->arrayNode('gdpr')
-                ->arrayPrototype()
-                    ->arrayPrototype()
-                        ->children()
-                            ->scalarNode('transformer')->isRequired()->cannotBeEmpty()->end()
-                            ->arrayNode('options')->useAttributeAsKey('name')->variablePrototype()->end()->end()
-                        ->end()
-                    ->end()
-                ->end()
+            ->arrayPrototype()
+            ->arrayPrototype()
+            ->children()
+            ->scalarNode('transformer')->isRequired()->cannotBeEmpty()->end()
+            ->arrayNode('options')->useAttributeAsKey('name')->variablePrototype()->end()->end()
+            ->end()
+            ->end()
+            ->end()
             ->end();
     }
 }

@@ -1,9 +1,9 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\Tests\Functional;
+namespace Arxy\GdprDumpBundle\Tests\Functional;
 
-use Arxy\GdprDump\Tests\Entity\Customer;
+use Arxy\GdprDumpBundle\Tests\Entity\Customer;
 use Doctrine\DBAL\Driver\PDOConnection;
 use Doctrine\DBAL\Driver\PDOStatement;
 use Doctrine\ORM\EntityManagerInterface;

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace Arxy\GdprDump;
+namespace Arxy\GdprDumpBundle;
 
 use Symfony\Component\OptionsResolver\OptionsResolver;
 

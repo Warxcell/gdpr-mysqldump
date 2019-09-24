@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Arxy\GdprDump\Tests;
+namespace Arxy\GdprDumpBundle\Tests;
 
-use Arxy\GdprDump\ArxyGdprDumpBundle;
+use Arxy\GdprDumpBundle\ArxyGdprDumpBundle;
 use Symfony\Component\Config\Loader\LoaderInterface;
 use Symfony\Component\HttpKernel\Kernel;
 
