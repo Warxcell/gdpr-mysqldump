@@ -52,3 +52,18 @@ Then ValueTransformer is called. The returned value is passed to ValueConverter,
 # Usage
 
 Use type-hint `Ifsnop\Mysqldump\Mysqldump` and see documentation of library at `https://github.com/ifsnop/mysqldump-php`.
+
+# Configuring and installing using pure php.
+
+```php
+$valueTransformer = new \Arxy\GdprDumpBundle\ValueTransformer();
+$valueTransformer->addTransformer(new \Arxy\GdprDumpBundle\Transformer\FakerTransformer());
+
+$tableCustomers = new \Arxy\GdprDumpBundle\Metadata\TableMetadata("customers");
+$tableCustomers->addColumn(new \Arxy\GdprDumpBundle\Metadata\ColumnMetadata("firstName", \Arxy\GdprDumpBundle\Transformer\FakerTransformer::class, [
+'generator' => 'firstName']));
+$valueTransformer->addTableMetadata($tableCustomers);
+
+$mysqldump = new \Ifsnop\Mysqldump\Mysqldump($dsn, $user, $password, $dumpSettings, $pdoSettings);
+$mysqldump->setTransformColumnValueHook([$transformValue, 'transform']);
+```
